@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Russo One', sans-serif;
+}
+
+
+
+
+
+body{
+    background: rgb(145, 139, 140);
+    overflow-x: hidden;
+   
+}
+
+.app{
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    
+}
+
+.game{
+    display: none;
+}
+
+.gameMenuScreen{
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.instructionsPage{
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    width: 90vw;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.enjoy {
+    margin-top: 2rem;
+}
+
+.about_BGE{
+    line-height: 2rem;
+    width: 80%;
+    margin: 0 0 2rem 0;
+}
+
+.about_BGE p, .howToPlay ul{
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.howToPlay{
+    line-height: 2rem;
+    width: 80%;
+}
+
+.howToPlay ul{
+    list-style: square;
+    text-align: start;
+}
+
+
+
+header{
+    background: rgb(148, 148, 148);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    overflow: hidden;
+    padding: 1rem 0;
+}
+
+.gameStatusIndicators{
+    display: flex;
+    width: 90vw;
+    justify-content: space-evenly;
+    align-items: center;
+    background: rgb(14, 13, 61);
+    padding: 0.5rem;
+}
+
+.playerShipsCount{
+    color: rgb(126, 171, 255);
+}
+
+.computerShipsCount{
+    color: rgb(255, 27, 46);
+}
+
+.gameStatusIndicators h3{
+    letter-spacing: 2px;
+    font-size: 1.5rem;
+}
+
+header h1{
+    font-size: 4rem;
+    
+    letter-spacing: 1rem;
+    text-transform: uppercase;
+}
+
+header h1 a{
+    text-decoration: none;
+    color: #fff;
+}
+
+header h2{
+    font-size: 2.5rem;
+    color: rgb(1, 123, 236);
+    border-radius: 10px;
+    letter-spacing: 8px;
+}
+
+.gameboard{
+    height: 65vh;
+    width: 35vw;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    position: relative;
+}
+
+.turn{
+    margin: 0 1rem;
+}
+
+.gameboards::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgb(22, 22, 22);
+}
+
+
+
+.squarePL01, .squarePL02 {
+    font-size: 2rem;
+    font-weight: 800;
+    cursor: url("images/aim.png"), pointer;
+    text-align: center;
+}
+
+
+.squarePL02:hover {
+    background:  rgb(25, 56, 85);
+    
+}
+
+.squarePL01:hover {
+    background: rgb(151, 11, 29);
+}
+
+
+.gameboards {
+    padding: 2rem;
+    width: 100vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+
+}
+
+.gameboards span, .gameboards button {
+    position: absolute;
+    z-index: 100;
+}
+
+.gameboards button {
+    display: none;
+    font-size: 4rem;
+    cursor: pointer;
+    padding: 1rem 4rem;
+    background: rgb(202, 202, 202);
+    border: none;
+    letter-spacing: 0.5rem;
+    transition: 0.2s;
+    
+}
+
+
+.gameboards button:hover{
+    background: rgb(23, 172, 55);
+    color: #fff;
+    border-radius: 50px;
+}
+
+.gameboards span {
+    display: none;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: rgba(22, 54, 63, 0.8);
+    
+}
+
+
+.gameboards h1{
+    color: rgb(255, 255, 255);
+    font-size: 5rem;
+    z-index: 1;
+}
+
+.gameboard01, .gameboard02 {
+    border: none;
+    z-index: 1;
+}
+
+.gameboard01{
+    background: rgba(1, 123, 236, 0.5);
+}
+
+.gameboard02{
+    background: rgba(238, 0, 20, 0.5)
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background: rgb(68, 68, 68);
+    color: rgba(1, 123, 236, 1);
+    letter-spacing: 0.2rem;
+    text-align: center;
+}
+
+footer img{
+   position: relative;
+   top: 5px;
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    
+}
+
+.menu button{
+    font-size: 3rem;
+    padding: 1rem 4rem;
+    cursor: pointer;
+    width: 40%;    
+    background: rgb(0, 97, 92);
+
+}
+
+.menu button:hover{
+    color: #fff;
+    background: rgb(0, 75, 71);
+}
+
+.menu > button{
+    margin-bottom: 4rem;
+}
+
+
+
+@media screen and (max-width: 896px) {
+    .howToPlay{
+        width: 90%;
+    }
+    
+    .about_BGE{
+        width: 90%;
+    }
+    
+    .gameboards button {
+        font-size: 2rem;
+        padding: 1rem;
+        
+    }
+
+    .menu button{
+        font-size: 2rem;
+        padding: 1rem 4rem;
+        width: 80%;    
+    }
+
+    
+
+    header h1{
+        font-size: 2.5rem;
+    }
+
+    header h2{
+        font-size: 1.5rem;
+        padding: 1rem 0.2rem;
+        letter-spacing: 0px;
+    }
+
+    .ships_remaining{
+        font-size: 1rem;
+    }
+
+    .gameStatusIndicators{
+        text-align: center;
+        margin-top: 1rem;        
+        justify-content: space-evenly;
+        background: rgb(14, 13, 61);
+        padding: 0.5rem;
+    }
+
+    .gameboards {
+        height: auto;
+        width: 100vw;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 1rem 0;
+    }
+
+    .gameboards h1{
+        font-size: 3rem;
+        margin: 1rem ;
+    }
+
+    .gameboard{
+        height: 80vh;
+        width: 90vw;
+        display: grid;
+    }
+
+    footer h1{
+        font-size: 1.2rem;
+    }
+}
+
+
+@media screen and (max-width: 440px) {
+    .gameboards button {
+        font-size: 2rem;
+        padding: 1rem;
+        
+    }
+    .menu button{
+        font-size: 2rem;
+        padding: 1rem;
+        width: 90%;    
+    }
+
+    header h1{
+        font-size: 1.4rem;
+        color: #fff;
+    }
+
+    .app{
+        grid-template-rows: auto 1fr auto;
+    }
+    .gameStatusIndicators{
+        text-align: center;
+        margin-top: 1rem;        
+        justify-content: space-evenly;
+        background: rgb(14, 13, 61);
+        padding: 0rem 1rem;
+    }
+    
+    .ships_remaining{
+        font-size: 0.9rem;
+    }
+}
