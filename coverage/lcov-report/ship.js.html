@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.38% </span>
+                <span class="strong">65% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>51/78</span>
+                <span class='fraction'>52/80</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.77% </span>
+                <span class="strong">63.38% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>44/69</span>
+                <span class='fraction'>45/71</span>
             </div>
         
             
@@ -226,9 +226,8 @@
 <a name='L167'></a><a href='#L167'>167</a>
 <a name='L168'></a><a href='#L168'>168</a>
 <a name='L169'></a><a href='#L169'>169</a>
-<a name='L170'></a><a href='#L170'>170</a>
-<a name='L171'></a><a href='#L171'>171</a>
-<a name='L172'></a><a href='#L172'>172</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L170'></a><a href='#L170'>170</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -236,7 +235,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -283,7 +282,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -293,11 +291,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -376,11 +369,14 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -401,13 +397,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { displayMissedShot, hitAudio, shipDestructionAudio } from "./controller";
 &nbsp;
-import { player01 } from "./players";
+&nbsp;
+import { player01, computer } from "./players";
 &nbsp;
 export let winner = document.querySelector('.winner');
 export let turn = document.querySelector('.turn');
 export let overlay = document.querySelector(".gameboards span");
 export let restartBtn = document.querySelector(".gameboards button")
-&nbsp;
+let winAudio = new Audio ("sounds/win.wav")
 export class Ship {
   constructor(locations, damage) {
     this.locations = locations;
@@ -425,7 +422,7 @@ export let hit = function (player, coordinates) {
                 player.ships[i].damage.push(coordinates);
                 pushToAllDamagedLocations(player, coordinates);
                 
-                //checkForDups(player01, coordinates)
+                
             } 
         }
     }
@@ -435,9 +432,9 @@ export let hit = function (player, coordinates) {
       pushToMissedShots(player, coordinates);
       displayMissedShot(player.name, coordinates)
       
-      //checkForDups(player01, coordinates)
+      
     }
-    //console.log(coordinates)
+    
 }
 &nbsp;
 &nbsp;
@@ -454,7 +451,6 @@ export function pushToUniqueLocations (player, coordinates) {
     player.uniqueLocations.push(coordinates)
     
   } else {
-    //console.log(JSON.stringify(player.uniqueLocations))
     player.duplicateLocations.push(coordinates)
     
   }
@@ -462,14 +458,9 @@ export function pushToUniqueLocations (player, coordinates) {
 }
 &nbsp;
 export function <span class="fstat-no" title="function not covered" >checkForDups </span>(player, coordinates) {
-<span class="cstat-no" title="statement not covered" >    console.log("uniques", player.uniqueLocations)</span>
-<span class="cstat-no" title="statement not covered" >    console.log("ALL SHOT", player.allShotLocations)</span>
-<span class="cstat-no" title="statement not covered" >    console.log("duplicates", player.duplicateLocations)</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      if (JSON.stringify(player.duplicateLocations).includes(coordinates)) {</span>
-<span class="cstat-no" title="statement not covered" >        return true</span>
-      }
-      
+<span class="cstat-no" title="statement not covered" >  if (JSON.stringify(player.duplicateLocations).includes(coordinates)) {</span>
+<span class="cstat-no" title="statement not covered" >    return true</span>
+  }
 }
   
 &nbsp;
@@ -547,7 +538,8 @@ export function checkWinner(firstPlayer, secondPlayer) {
 <span class="cstat-no" title="statement not covered" >      turn.style.display = "none"</span>
 <span class="cstat-no" title="statement not covered" >      overlay.style.display = "block"</span>
 <span class="cstat-no" title="statement not covered" >      restartBtn.style.display = "block"</span>
-&nbsp;
+<span class="cstat-no" title="statement not covered" >      winAudio.play()</span>
+<span class="cstat-no" title="statement not covered" >      winAudio.loop = true</span>
 <span class="cstat-no" title="statement not covered" >      return firstPlayer.name + " wins";</span>
 &nbsp;
     } else <span class="cstat-no" title="statement not covered" >if (firstPlayerDamagedShipsLength &gt; secondPlayerDamagedShipsLength</span>
@@ -559,6 +551,8 @@ export function checkWinner(firstPlayer, secondPlayer) {
 <span class="cstat-no" title="statement not covered" >      turn.style.display = "none";</span>
 <span class="cstat-no" title="statement not covered" >      overlay.style.display = "block"</span>
 <span class="cstat-no" title="statement not covered" >      restartBtn.style.display = "block"</span>
+<span class="cstat-no" title="statement not covered" >      winAudio.play()</span>
+<span class="cstat-no" title="statement not covered" >      winAudio.loop = true</span>
 <span class="cstat-no" title="statement not covered" >      return secondPlayer.name + " win";</span>
 &nbsp;
     } else {
@@ -577,7 +571,7 @@ export function checkWinner(firstPlayer, secondPlayer) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Jul 28 2021 06:36:59 GMT+0100 (GMT+01:00)
+                at Sun Aug 01 2021 16:33:43 GMT+0100 (GMT+01:00)
             </div>
         </div>
         <script src="prettify.js"></script>
