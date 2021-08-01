@@ -7,7 +7,7 @@
   "description": "",
   "main": "gameLoop.js",
   "scripts": {
-    "test": "jest --coverage --watchAll"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",

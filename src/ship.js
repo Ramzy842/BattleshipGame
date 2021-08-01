@@ -8,6 +8,8 @@ export let turn = document.querySelector('.turn');
 export let overlay = document.querySelector(".gameboards span");
 export let restartBtn = document.querySelector(".gameboards button")
 let winAudio = new Audio ("sounds/win.wav")
+
+
 export class Ship {
   constructor(locations, damage) {
     this.locations = locations;
